@@ -16,12 +16,13 @@
 
 ;; test that we can create a new Collection with valid inputs
 (expect
-  {:name        "My Favorite Cards"
-   :slug        "my_favorite_cards"
-   :description nil
-   :color       "#ABCDEF"
-   :archived    false
-   :location    "/"}
+  {:name              "My Favorite Cards"
+   :slug              "my_favorite_cards"
+   :description       nil
+   :color             "#ABCDEF"
+   :archived          false
+   :location          "/"
+   :personal_owner_id nil}
   (tt/with-temp Collection [collection {:name "My Favorite Cards", :color "#ABCDEF"}]
     (dissoc collection :id)))
 

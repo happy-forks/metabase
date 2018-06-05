@@ -4161,3 +4161,26 @@ databaseChangeLog:
               remarks: 'When was this User last updated?'
         - sql:
             sql: update core_user set updated_at=date_joined
+  - changeSet:
+      id: 83
+      author: camsaul
+      comment: 'Added 0.30.0'
+      changes:
+        - addColumn:
+            tableName: collection
+            columns:
+              name: personal_owner_id
+              type: int
+              remarks: 'If set, this Collection is a personal Collection, for exclusive use of the User with this ID.'
+              constraints:
+                references: core_user(id)
+                foreignKeyName: fk_collection_personal_owner_id
+                unique: true
+                deleteCascade: true
+        # Needed so we can efficiently look up the Collection belonging to a User, and so we can efficiently enforce the unique constraint
+        - createIndex:
+            tableName: collection
+            indexName: idx_collection_personal_owner_id
+            columns:
+              - column:
+                  name: personal_owner_id
