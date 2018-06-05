@@ -17,6 +17,11 @@ const Questions = createEntity({
         id,
         collection_id: collection && collection.id,
       }),
+    setFavorited: ({ id }, favorited) =>
+      Questions.actions.updated({
+        id,
+        favorited,
+      }),
   },
 
   objectSelectors: {

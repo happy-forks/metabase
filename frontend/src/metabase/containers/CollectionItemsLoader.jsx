@@ -12,6 +12,7 @@ const CollectionItemsLoader = ({ collectionId, children, ...props }: Props) => (
     {...props}
     entityType="collections"
     entityId={collectionId}
+    wrapped
     children={({ object }) =>
       object &&
       children({
